@@ -1,34 +1,44 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Jan 31 02:22:31 2021
+Create a simple youtube downloader
 
-@author: rsh110520
+@author: Reyhaneh
 """
 
+#import nesscery modules
 from tkinter import *
 from pytube import YouTube
 from tkinter import messagebox
 from tkinter import filedialog
 import os
 
+#create a tkinter window 
 root=Tk()
+
+#set title for the window 
 root.title("YouTube Downloader")
+
+#set the size of the window 
 root.geometry('520x300')
+
+#set the minimume size of the window 
 root.minsize(520,300)
+
+#set the maximum size of the window 
 root.maxsize(520,300)
 
-
+#a function for opening a browse pop up window
 def Browse_path():
     download_path.delete(0,END)
     Path_download=filedialog.askdirectory()
     path.set(Path_download)
     
-
+# a function for downloading the video
 def Downloader():
-    
     Link=str(link.get())
     Path=str(path.get())
     try:
+        
         url=YouTube(Link)
         video=url.streams.first()
         video.download(Path)
